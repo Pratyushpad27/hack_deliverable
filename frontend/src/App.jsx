@@ -10,24 +10,23 @@ function App() {
 	const [error, setError] = useState(null);
 	const [successMsg, setSuccessMsg] = useState(null);
 
-	const fetchQuotes = async () => {
-		setLoading(true);
-		setError(null);
-		try {
-			const res = await fetch(`/api/quotes?period=${period}`);
-			if (!res.ok) {
-				throw new Error(`Failed to fetch quotes (${res.status})`);
-			}
-			const data = await res.json();
-			setQuotes(data);
-		} catch (err) {
-			setError(err.message);
-		} finally {
-			setLoading(false);
-		}
-	};
-
 	useEffect(() => {
+		const fetchQuotes = async () => {
+			setLoading(true);
+			setError(null);
+			try {
+				const res = await fetch(`/api/quotes?period=${period}`);
+				if (!res.ok) {
+					throw new Error(`Failed to fetch quotes (${res.status})`);
+				}
+				const data = await res.json();
+				setQuotes(data);
+			} catch (err) {
+				setError(err.message);
+			} finally {
+				setLoading(false);
+			}
+		};
 		fetchQuotes();
 	}, [period]);
 

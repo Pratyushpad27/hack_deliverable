@@ -1,9 +1,10 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120">
-  <rect x="20" y="10" width="80" height="100" rx="6" fill="#1a1a2e" />
-  <rect x="28" y="16" width="68" height="88" rx="4" fill="#f5f0e8" />
-  <rect x="16" y="30" width="8" height="14" rx="2" fill="#e94560" />
-  <rect x="16" y="55" width="8" height="14" rx="2" fill="#e94560" />
-  <rect x="16" y="80" width="8" height="14" rx="2" fill="#e94560" />
-  <text x="62" y="55" text-anchor="middle" font-family="Georgia, serif" font-size="36" fill="#e94560" font-weight="bold">"</text>
-  <text x="62" y="85" text-anchor="middle" font-family="Georgia, serif" font-size="36" fill="#e94560" font-weight="bold">"</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <!-- Outer circle -->
+  <circle cx="100" cy="100" r="90" fill="none" stroke="#2d2d2d" stroke-width="6"/>
+  <!-- Left quote mark -->
+  <path d="M72 60 L72 110 Q72 130 60 140" fill="none" stroke="#2d2d2d" stroke-width="10" stroke-linecap="round"/>
+  <circle cx="60" cy="142" r="8" fill="#2d2d2d"/>
+  <!-- Right quote mark -->
+  <path d="M112 60 L112 110 Q112 130 100 140" fill="none" stroke="#2d2d2d" stroke-width="10" stroke-linecap="round"/>
+  <circle cx="100" cy="142" r="8" fill="#2d2d2d"/>
 </svg>

@@ -1,38 +1,32 @@
 # Hack at UCI Quote Book
 
-A quote book web app for Hack at UCI members to submit and browse fun quotes.
+A quote book app where Hack at UCI members can submit and browse fun quotes.
 
-**Live Demo:** https://hack-deliverable-pratyush.netlify.app
+**Live demo:** https://hack-deliverable-pratyush.netlify.app
 
-## What I Built
+## What I did
 
-### Backend (FastAPI)
-- **GET `/quotes`** — Retrieves all quotes from the database. Supports a `?period=` query parameter to filter by time range (`week`, `month`, `year`, or `all`)
-- **POST `/quote`** — Accepts a name and message via form data, timestamps it, saves to the database, and returns the new quote as JSON
+- Added a `GET /quotes` endpoint with a `?period=` query param to filter quotes by week, month, year, or all time
+- Changed the `POST /quote` endpoint to return JSON instead of redirecting, so the page doesn't refresh on submit
+- Built a `QuoteCard` component to display each quote (name, message, date)
+- Built a `QuoteForm` component that handles submission without page reload
+- Added a dropdown to filter quotes by time period
+- Styled everything with plain CSS, made it responsive for mobile
+- Added a fade-in animation on quote cards and a success message when you submit
 
-### Frontend (React + Vite)
-- **QuoteForm** component — Submits quotes via `fetch` without refreshing the page. Includes input validation and a loading state on the submit button
-- **QuoteCard** component — Displays each quote with the message, author name, and formatted date. Uses semantic HTML (`<article>`, `<blockquote>`, `<cite>`, `<time>`)
-- **Time filter** — Dropdown to filter quotes by past week, month, year, or all time
-- **Responsive design** — Works on mobile with breakpoints at 600px and 400px
-- **Animations** — Cards fade/slide in, success message after submitting
-- **Error handling** — Dismissable error banner for failed requests
-- **Accessibility** — `aria-live` region for screen readers, proper labels, good color contrast
+## How to run it locally
 
-## Setup
-
-### Backend
+Start the backend:
 
 ```bash
 cd api
 python3 -m venv .venv
-source .venv/bin/activate   # macOS/Unix
-# .\.venv\Scripts\activate  # Windows
+source .venv/bin/activate
 pip install -r requirements.txt
 python3 src/main.py
 ```
 
-### Frontend
+Start the frontend (in a separate terminal):
 
 ```bash
 cd frontend
@@ -40,10 +34,10 @@ npm ci
 npm run dev
 ```
 
-Open the URL shown in the terminal (usually **http://localhost:5173**). Both servers need to be running — the Vite dev server proxies `/api/*` requests to the backend automatically.
+Open the URL shown in the terminal (usually http://localhost:5173). Both servers need to be running.
 
-## Tech Stack
+## Tech stack
 
-- **Frontend:** React 18, Vite, CSS
-- **Backend:** FastAPI, Uvicorn, Python
-- **Database:** JSON file (simulated)
+- React, Vite, CSS (frontend)
+- FastAPI, Python (backend)
+- JSON file for storage

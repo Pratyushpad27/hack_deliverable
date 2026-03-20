@@ -1,10 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
-  <!-- Outer circle -->
-  <circle cx="100" cy="100" r="90" fill="none" stroke="#2d2d2d" stroke-width="6"/>
-  <!-- Left quote mark -->
-  <path d="M72 60 L72 110 Q72 130 60 140" fill="none" stroke="#2d2d2d" stroke-width="10" stroke-linecap="round"/>
-  <circle cx="60" cy="142" r="8" fill="#2d2d2d"/>
-  <!-- Right quote mark -->
-  <path d="M112 60 L112 110 Q112 130 100 140" fill="none" stroke="#2d2d2d" stroke-width="10" stroke-linecap="round"/>
-  <circle cx="100" cy="142" r="8" fill="#2d2d2d"/>
+  <circle cx="100" cy="100" r="88" fill="none" stroke="#2d2d2d" stroke-width="5"/>
+  <path d="M75 45 L75 120 Q75 148 58 155" fill="none" stroke="#2d2d2d" stroke-width="9" stroke-linecap="round"/>
+  <circle cx="56" cy="157" r="9" fill="#2d2d2d"/>
+  <path d="M115 45 L115 120 Q115 148 98 155" fill="none" stroke="#2d2d2d" stroke-width="9" stroke-linecap="round"/>
+  <circle cx="96" cy="157" r="9" fill="#2d2d2d"/>
 </svg>

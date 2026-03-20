@@ -1,9 +1,8 @@
 from contextlib import asynccontextmanager
-from datetime import datetime
-from typing import AsyncIterator
+from datetime import datetime, timedelta
+from typing import AsyncIterator, Optional
 
-from fastapi import FastAPI, Form, status
-from fastapi.responses import RedirectResponse
+from fastapi import FastAPI, Form, Query
 from typing_extensions import TypedDict
 
 from services.database import JSONDatabase
@@ -34,17 +33,32 @@ app = FastAPI(lifespan=lifespan)
 
 
 @app.post("/quote")
-def post_message(name: str = Form(), message: str = Form()) -> RedirectResponse:
-    """
-    Process a user submitting a new quote.
-    You should not modify this function except for the return value.
-    """
+def post_message(name: str = Form(), message: str = Form()) -> Quote:
+    """Process a user submitting a new quote."""
     now = datetime.now()
     quote = Quote(name=name, message=message, time=now.isoformat(timespec="seconds"))
     database["quotes"].append(quote)
-
-    # You may modify the return value as needed to support other functionality
-    return RedirectResponse("/", status.HTTP_303_SEE_OTHER)
+    return quote
 
 
-# TODO: add another API route with a query parameter to retrieve quotes based on max age
+@app.get("/quotes")
+def get_quotes(period: Optional[str] = Query(None)) -> list[Quote]:
+    """Retrieve quotes, optionally filtered by a maximum age period."""
+    all_quotes: list[Quote] = database["quotes"]
+
+    if period is None or period == "all":
+        return all_quotes
+
+    now = datetime.now()
+    delta_map = {
+        "week": timedelta(weeks=1),
+        "month": timedelta(days=30),
+        "year": timedelta(days=365),
+    }
+
+    delta = delta_map.get(period)
+    if delta is None:
+        return all_quotes
+
+    cutoff = now - delta
+    return [q for q in all_quotes if datetime.fromisoformat(q["time"]) >= cutoff]

@@ -1,0 +1,141 @@
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	background: #f0f2f5;
+	color: #1a1a2e;
+	min-height: 100vh;
+}
+
+.app {
+	max-width: 720px;
+	margin: 0 auto;
+	padding: 2rem 1.5rem;
+}
+
+/* Header */
+.header {
+	text-align: center;
+	margin-bottom: 2.5rem;
+}
+
+.logo {
+	width: 80px;
+	height: 80px;
+	margin-bottom: 0.75rem;
+}
+
+.header h1 {
+	font-size: 1.75rem;
+	color: #1a1a2e;
+	font-weight: 700;
+}
+
+/* Form Section */
+.form-section {
+	background: #ffffff;
+	border-radius: 12px;
+	padding: 1.5rem 2rem;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+	margin-bottom: 2.5rem;
+}
+
+.form-section h2 {
+	font-size: 1.25rem;
+	margin-bottom: 1rem;
+	color: #16213e;
+}
+
+.quote-form {
+	display: flex;
+	flex-direction: column;
+	gap: 0.6rem;
+}
+
+.quote-form label {
+	font-weight: 600;
+	font-size: 0.9rem;
+	color: #333;
+}
+
+.quote-form input {
+	padding: 0.65rem 0.85rem;
+	border: 1.5px solid #d1d5db;
+	border-radius: 8px;
+	font-size: 1rem;
+	font-family: inherit;
+	transition: border-color 0.2s ease;
+}
+
+.quote-form input:focus {
+	outline: none;
+	border-color: #e94560;
+	box-shadow: 0 0 0 3px rgba(233, 69, 96, 0.15);
+}
+
+.quote-form button {
+	margin-top: 0.5rem;
+	padding: 0.7rem;
+	background: #e94560;
+	color: #fff;
+	border: none;
+	border-radius: 8px;
+	font-size: 1rem;
+	font-weight: 600;
+	cursor: pointer;
+	transition: background 0.2s ease;
+}
+
+.quote-form button:hover {
+	background: #d63851;
+}
+
+.quote-form button:active {
+	background: #c22d44;
+}
+
+/* Quotes Section */
+.quotes-section h2 {
+	font-size: 1.25rem;
+	color: #16213e;
+}
+
+.quotes-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 1.25rem;
+}
+
+.period-select {
+	padding: 0.45rem 0.75rem;
+	border: 1.5px solid #d1d5db;
+	border-radius: 8px;
+	font-size: 0.9rem;
+	font-family: inherit;
+	background: #fff;
+	color: #333;
+	cursor: pointer;
+}
+
+.period-select:focus {
+	outline: none;
+	border-color: #e94560;
+}
+
+/* Quotes List */
+.quotes-list {
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+}
+
+.no-quotes {
+	text-align: center;
+	color: #888;
+	padding: 2rem 0;
+	font-style: italic;
+}

@@ -2,6 +2,8 @@
 
 A quote book web app for Hack at UCI members to submit and browse fun quotes.
 
+**Live Demo:** https://hack-deliverable-pratyush.netlify.app
+
 ## What I Built
 
 ### Backend (FastAPI)

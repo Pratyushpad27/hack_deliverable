@@ -1,0 +1,91 @@
+.form-section {
+	background: #ffffff;
+	border-radius: 12px;
+	padding: 1.5rem 2rem;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+	margin-bottom: 2.5rem;
+}
+
+.form-section h2 {
+	font-size: 1.25rem;
+	margin-bottom: 1rem;
+	color: #16213e;
+}
+
+.quote-form {
+	display: flex;
+	flex-direction: column;
+	gap: 0.6rem;
+}
+
+.quote-form label {
+	font-weight: 600;
+	font-size: 0.9rem;
+	color: #333;
+}
+
+.quote-form input,
+.quote-form textarea {
+	padding: 0.65rem 0.85rem;
+	border: 1.5px solid #d1d5db;
+	border-radius: 8px;
+	font-size: 1rem;
+	font-family: inherit;
+	transition: border-color 0.2s ease;
+}
+
+.quote-form textarea {
+	resize: vertical;
+	min-height: 60px;
+}
+
+.quote-form input:focus,
+.quote-form textarea:focus {
+	outline: none;
+	border-color: #e94560;
+	box-shadow: 0 0 0 3px rgba(233, 69, 96, 0.15);
+}
+
+.quote-form button {
+	margin-top: 0.5rem;
+	padding: 0.7rem;
+	background: #e94560;
+	color: #fff;
+	border: none;
+	border-radius: 8px;
+	font-size: 1rem;
+	font-weight: 600;
+	cursor: pointer;
+	transition: background 0.2s ease;
+}
+
+.quote-form button:hover {
+	background: #d63851;
+}
+
+.quote-form button:active {
+	background: #c22d44;
+}
+
+.quote-form button:disabled {
+	background: #ccc;
+	cursor: not-allowed;
+}
+
+@media (max-width: 600px) {
+	.form-section {
+		padding: 1.25rem 1.25rem;
+		border-radius: 8px;
+	}
+
+	.quote-form button {
+		padding: 0.85rem;
+		font-size: 1.05rem;
+	}
+}
+
+@media (max-width: 400px) {
+	.form-section {
+		padding: 1rem;
+	}
+}

@@ -1,14 +1,12 @@
 import { useState, useEffect } from "react";
 import QuoteCard from "./components/QuoteCard";
+import QuoteForm from "./components/QuoteForm";
 import "./App.css";
 
 function App() {
 	const [quotes, setQuotes] = useState([]);
-	const [name, setName] = useState("");
-	const [message, setMessage] = useState("");
 	const [period, setPeriod] = useState("all");
 	const [loading, setLoading] = useState(true);
-	const [submitting, setSubmitting] = useState(false);
 	const [error, setError] = useState(null);
 	const [successMsg, setSuccessMsg] = useState(null);
 
@@ -33,42 +31,10 @@ function App() {
 		fetchQuotes();
 	}, [period]);
 
-	const handleSubmit = async (e) => {
-		e.preventDefault();
-
-		if (!name.trim() || !message.trim()) {
-			setError("Name and quote cannot be empty.");
-			return;
-		}
-
-		setSubmitting(true);
-		setError(null);
-
-		try {
-			const formData = new FormData();
-			formData.append("name", name.trim());
-			formData.append("message", message.trim());
-
-			const res = await fetch("/api/quote", {
-				method: "POST",
-				body: formData,
-			});
-
-			if (!res.ok) {
-				throw new Error(`Failed to submit quote (${res.status})`);
-			}
-
-			const newQuote = await res.json();
-			setQuotes((prev) => [...prev, newQuote]);
-			setName("");
-			setMessage("");
-			setSuccessMsg("Quote added successfully!");
-			setTimeout(() => setSuccessMsg(null), 3000);
-		} catch (err) {
-			setError(err.message);
-		} finally {
-			setSubmitting(false);
-		}
+	const handleQuoteAdded = (newQuote) => {
+		setQuotes((prev) => [...prev, newQuote]);
+		setSuccessMsg("Quote added successfully!");
+		setTimeout(() => setSuccessMsg(null), 3000);
 	};
 
 	return (
@@ -93,32 +59,7 @@ function App() {
 				</div>
 			)}
 
-			<section className="form-section">
-				<h2>Submit a Quote</h2>
-				<form onSubmit={handleSubmit} className="quote-form">
-					<label htmlFor="input-name">Name</label>
-					<input
-						type="text"
-						id="input-name"
-						value={name}
-						onChange={(e) => setName(e.target.value)}
-						placeholder="Who said it?"
-						required
-					/>
-					<label htmlFor="input-message">Quote</label>
-					<textarea
-						id="input-message"
-						value={message}
-						onChange={(e) => setMessage(e.target.value)}
-						placeholder="What did they say?"
-						rows={3}
-						required
-					/>
-					<button type="submit" disabled={submitting}>
-						{submitting ? "Submitting..." : "Submit"}
-					</button>
-				</form>
-			</section>
+			<QuoteForm onQuoteAdded={handleQuoteAdded} onError={setError} />
 
 			<section className="quotes-section">
 				<div className="quotes-header">

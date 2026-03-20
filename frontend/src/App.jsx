@@ -42,6 +42,7 @@ function App() {
 			<header className="header">
 				<img src="/quotebook.svg" alt="Quotebook logo" className="logo" />
 				<h1>Hack at UCI Tech Deliverable</h1>
+				<p className="header-subtitle">Share and browse memorable quotes</p>
 			</header>
 
 			{error && (
@@ -63,7 +64,12 @@ function App() {
 
 			<section className="quotes-section">
 				<div className="quotes-header">
-					<h2>Previous Quotes</h2>
+					<h2>
+						Previous Quotes
+						{!loading && quotes.length > 0 && (
+							<span className="quote-count">{quotes.length}</span>
+						)}
+					</h2>
 					<select
 						value={period}
 						onChange={(e) => setPeriod(e.target.value)}
@@ -94,6 +100,10 @@ function App() {
 					)}
 				</div>
 			</section>
+
+			<footer className="app-footer">
+				<p>Built for Hack at UCI</p>
+			</footer>
 		</div>
 	);
 }

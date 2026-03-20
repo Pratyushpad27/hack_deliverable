@@ -10,6 +10,7 @@ function App() {
 	const [loading, setLoading] = useState(true);
 	const [submitting, setSubmitting] = useState(false);
 	const [error, setError] = useState(null);
+	const [successMsg, setSuccessMsg] = useState(null);
 
 	const fetchQuotes = async () => {
 		setLoading(true);
@@ -61,6 +62,8 @@ function App() {
 			setQuotes((prev) => [...prev, newQuote]);
 			setName("");
 			setMessage("");
+			setSuccessMsg("Quote added successfully!");
+			setTimeout(() => setSuccessMsg(null), 3000);
 		} catch (err) {
 			setError(err.message);
 		} finally {
@@ -81,6 +84,12 @@ function App() {
 					<button onClick={() => setError(null)} aria-label="Dismiss error">
 						&times;
 					</button>
+				</div>
+			)}
+
+			{successMsg && (
+				<div className="success-banner" role="status">
+					{successMsg}
 				</div>
 			)}
 

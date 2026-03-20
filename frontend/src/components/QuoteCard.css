@@ -42,3 +42,19 @@
 	color: #666;
 	display: block;
 }
+
+@media (max-width: 600px) {
+	.quote-card {
+		padding: 1rem 1.1rem;
+		border-radius: 8px;
+	}
+
+	.quote-message {
+		font-size: 1rem;
+	}
+
+	.quote-footer {
+		flex-direction: column;
+		gap: 0.25rem;
+	}
+}

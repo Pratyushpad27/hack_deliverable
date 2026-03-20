@@ -182,3 +182,57 @@ body {
 	background: #ccc;
 	cursor: not-allowed;
 }
+
+/* Responsive Design */
+@media (max-width: 600px) {
+	.app {
+		padding: 1.25rem 1rem;
+	}
+
+	.header h1 {
+		font-size: 1.35rem;
+	}
+
+	.logo {
+		width: 60px;
+		height: 60px;
+	}
+
+	.form-section {
+		padding: 1.25rem 1.25rem;
+		border-radius: 8px;
+	}
+
+	.quotes-header {
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 0.75rem;
+	}
+
+	.period-select {
+		width: 100%;
+	}
+
+	.quote-form button {
+		padding: 0.85rem;
+		font-size: 1.05rem;
+	}
+
+	.error-banner {
+		font-size: 0.85rem;
+	}
+}
+
+@media (max-width: 400px) {
+	.app {
+		padding: 1rem 0.75rem;
+	}
+
+	.header h1 {
+		font-size: 1.15rem;
+	}
+
+	.form-section {
+		padding: 1rem;
+	}
+}

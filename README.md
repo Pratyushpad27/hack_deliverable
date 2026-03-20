@@ -40,7 +40,7 @@ npm ci
 npm run dev
 ```
 
-Open **http://localhost:5175** in your browser. Both servers need to be running — the Vite dev server proxies `/api/*` requests to the backend automatically.
+Open **http://localhost:5173** in your browser. Both servers need to be running — the Vite dev server proxies `/api/*` requests to the backend automatically.
 
 ## Tech Stack
 

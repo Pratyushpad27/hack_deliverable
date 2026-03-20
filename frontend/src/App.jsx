@@ -7,11 +7,25 @@ function App() {
 	const [name, setName] = useState("");
 	const [message, setMessage] = useState("");
 	const [period, setPeriod] = useState("all");
+	const [loading, setLoading] = useState(true);
+	const [submitting, setSubmitting] = useState(false);
+	const [error, setError] = useState(null);
 
 	const fetchQuotes = async () => {
-		const res = await fetch(`/api/quotes?period=${period}`);
-		const data = await res.json();
-		setQuotes(data);
+		setLoading(true);
+		setError(null);
+		try {
+			const res = await fetch(`/api/quotes?period=${period}`);
+			if (!res.ok) {
+				throw new Error(`Failed to fetch quotes (${res.status})`);
+			}
+			const data = await res.json();
+			setQuotes(data);
+		} catch (err) {
+			setError(err.message);
+		} finally {
+			setLoading(false);
+		}
 	};
 
 	useEffect(() => {
@@ -21,19 +35,37 @@ function App() {
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 
-		const formData = new FormData();
-		formData.append("name", name);
-		formData.append("message", message);
+		if (!name.trim() || !message.trim()) {
+			setError("Name and quote cannot be empty.");
+			return;
+		}
 
-		const res = await fetch("/api/quote", {
-			method: "POST",
-			body: formData,
-		});
+		setSubmitting(true);
+		setError(null);
 
-		const newQuote = await res.json();
-		setQuotes((prev) => [...prev, newQuote]);
-		setName("");
-		setMessage("");
+		try {
+			const formData = new FormData();
+			formData.append("name", name.trim());
+			formData.append("message", message.trim());
+
+			const res = await fetch("/api/quote", {
+				method: "POST",
+				body: formData,
+			});
+
+			if (!res.ok) {
+				throw new Error(`Failed to submit quote (${res.status})`);
+			}
+
+			const newQuote = await res.json();
+			setQuotes((prev) => [...prev, newQuote]);
+			setName("");
+			setMessage("");
+		} catch (err) {
+			setError(err.message);
+		} finally {
+			setSubmitting(false);
+		}
 	};
 
 	return (
@@ -42,6 +74,15 @@ function App() {
 				<img src="/quotebook.svg" alt="Quotebook logo" className="logo" />
 				<h1>Hack at UCI Tech Deliverable</h1>
 			</header>
+
+			{error && (
+				<div className="error-banner" role="alert">
+					<p>{error}</p>
+					<button onClick={() => setError(null)} aria-label="Dismiss error">
+						&times;
+					</button>
+				</div>
+			)}
 
 			<section className="form-section">
 				<h2>Submit a Quote</h2>
@@ -64,7 +105,9 @@ function App() {
 						placeholder="What did they say?"
 						required
 					/>
-					<button type="submit">Submit</button>
+					<button type="submit" disabled={submitting}>
+						{submitting ? "Submitting..." : "Submit"}
+					</button>
 				</form>
 			</section>
 
@@ -85,7 +128,9 @@ function App() {
 				</div>
 
 				<div className="quotes-list">
-					{quotes.length === 0 ? (
+					{loading ? (
+						<p className="loading-text">Loading quotes...</p>
+					) : quotes.length === 0 ? (
 						<p className="no-quotes">No quotes found for this time period.</p>
 					) : (
 						quotes.map((q, i) => (

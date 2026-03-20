@@ -61,7 +61,8 @@ body {
 	color: #333;
 }
 
-.quote-form input {
+.quote-form input,
+.quote-form textarea {
 	padding: 0.65rem 0.85rem;
 	border: 1.5px solid #d1d5db;
 	border-radius: 8px;
@@ -70,7 +71,13 @@ body {
 	transition: border-color 0.2s ease;
 }
 
-.quote-form input:focus {
+.quote-form textarea {
+	resize: vertical;
+	min-height: 60px;
+}
+
+.quote-form input:focus,
+.quote-form textarea:focus {
 	outline: none;
 	border-color: #e94560;
 	box-shadow: 0 0 0 3px rgba(233, 69, 96, 0.15);

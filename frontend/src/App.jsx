@@ -97,12 +97,12 @@ function App() {
 						required
 					/>
 					<label htmlFor="input-message">Quote</label>
-					<input
-						type="text"
+					<textarea
 						id="input-message"
 						value={message}
 						onChange={(e) => setMessage(e.target.value)}
 						placeholder="What did they say?"
+						rows={3}
 						required
 					/>
 					<button type="submit" disabled={submitting}>
@@ -127,7 +127,7 @@ function App() {
 					</select>
 				</div>
 
-				<div className="quotes-list">
+				<div className="quotes-list" aria-live="polite">
 					{loading ? (
 						<p className="loading-text">Loading quotes...</p>
 					) : quotes.length === 0 ? (

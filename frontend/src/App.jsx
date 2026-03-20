@@ -39,7 +39,7 @@ function App() {
 	return (
 		<div className="app">
 			<header className="header">
-				<img src="/quotebook.svg" alt="Quotebook logo" className="logo" />
+				<img src="/quotebook.png" alt="Quotebook logo" className="logo" />
 				<h1>Hack at UCI Tech Deliverable</h1>
 				<p className="header-subtitle">Share and browse memorable quotes</p>
 			</header>

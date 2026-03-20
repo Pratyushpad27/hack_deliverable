@@ -1,8 +1,11 @@
+import os
 from contextlib import asynccontextmanager
 from datetime import datetime, timedelta
+from pathlib import Path
 from typing import AsyncIterator, Optional
 
 from fastapi import FastAPI, Form, Query
+from fastapi.middleware.cors import CORSMiddleware
 from typing_extensions import TypedDict
 
 from services.database import JSONDatabase
@@ -14,7 +17,8 @@ class Quote(TypedDict):
     time: str
 
 
-database: JSONDatabase[list[Quote]] = JSONDatabase("data/database.json")
+db_path = Path(__file__).resolve().parent.parent / "data" / "database.json"
+database: JSONDatabase[list[Quote]] = JSONDatabase(str(db_path))
 
 
 @asynccontextmanager
@@ -30,6 +34,13 @@ async def lifespan(app: FastAPI) -> AsyncIterator[None]:
 
 
 app = FastAPI(lifespan=lifespan)
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=os.environ.get("ALLOWED_ORIGINS", "*").split(","),
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 
 @app.post("/quote")

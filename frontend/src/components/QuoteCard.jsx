@@ -9,16 +9,14 @@ function QuoteCard({ name, message, time }) {
 	});
 
 	return (
-		<article className="quote-card" aria-label={`Quote by ${name}`}>
-			<blockquote className="quote-message">
-				<p>{message}</p>
-			</blockquote>
-			<footer className="quote-footer">
-				<cite className="quote-author">{name}</cite>
+		<article className="quote-card">
+			<p className="quote-message">{message}</p>
+			<div className="quote-footer">
+				<span className="quote-author">— {name}</span>
 				<time className="quote-date" dateTime={time}>
 					{formattedDate}
 				</time>
-			</footer>
+			</div>
 		</article>
 	);
 }

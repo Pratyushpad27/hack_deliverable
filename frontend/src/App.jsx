@@ -82,7 +82,7 @@ function App() {
 					</select>
 				</div>
 
-				<div className="quotes-list" aria-live="polite">
+				<div className="quotes-list">
 					{loading ? (
 						<p className="loading-text">Loading quotes...</p>
 					) : quotes.length === 0 ? (

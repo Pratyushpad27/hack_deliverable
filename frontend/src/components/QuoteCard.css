@@ -33,10 +33,6 @@
 	padding-left: 0.75rem;
 }
 
-.quote-message p {
-	margin: 0;
-}
-
 .quote-footer {
 	display: flex;
 	justify-content: space-between;
@@ -45,14 +41,12 @@
 
 .quote-author {
 	font-weight: 600;
-	font-style: normal;
 	color: #16213e;
 }
 
 .quote-date {
 	font-size: 0.85rem;
 	color: #666;
-	display: block;
 }
 
 @media (max-width: 600px) {

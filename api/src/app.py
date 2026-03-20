@@ -45,7 +45,7 @@ app.add_middleware(
 
 @app.post("/quote")
 def post_message(name: str = Form(), message: str = Form()) -> Quote:
-    """Process a user submitting a new quote."""
+    """Process a new quote submission."""
     now = datetime.now()
     quote = Quote(name=name, message=message, time=now.isoformat(timespec="seconds"))
     database["quotes"].append(quote)
@@ -54,7 +54,7 @@ def post_message(name: str = Form(), message: str = Form()) -> Quote:
 
 @app.get("/quotes")
 def get_quotes(period: Optional[str] = Query(None)) -> list[Quote]:
-    """Retrieve quotes, optionally filtered by a maximum age period."""
+    """Get quotes from the database, filtered by time period if given."""
     all_quotes: list[Quote] = database["quotes"]
 
     if period is None or period == "all":

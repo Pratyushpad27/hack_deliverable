@@ -2,7 +2,7 @@
 
 A quote book app where Hack at UCI members can submit and browse fun quotes.
 
-**Live demo:** https://hack-deliverable-pratyush.netlify.app
+**Status:** demo offline — backend host suspended
 
 ## What I did
 
